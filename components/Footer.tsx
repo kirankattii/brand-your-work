@@ -7,10 +7,8 @@ const Footer = () => {
     return (
         <footer className="w-full bg-[#1c1c1c] text-white overflow-hidden font-sans">
             <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24">
-                {/* Top Section */}
                 <div className="flex flex-col md:flex-row justify-between gap-16 md:gap-8 mb-24">
 
-                    {/* Left Column */}
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -28,7 +26,6 @@ const Footer = () => {
                         </p>
                     </motion.div>
 
-                    {/* Right Column (Form) */}
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +75,6 @@ const Footer = () => {
                     </motion.div>
                 </div>
 
-                {/* Divider */}
                 <div className="relative flex items-center justify-center my-16">
                     <div className="absolute inset-0 flex items-center">
                         <div className="w-full border-t border-gray-700"></div>
@@ -86,7 +82,6 @@ const Footer = () => {
                     <div className="relative bg-[#1c1c1c] px-4 text-sm text-gray-400 font-light">or</div>
                 </div>
 
-                {/* Contact Section */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -120,7 +115,6 @@ const Footer = () => {
                 </motion.div>
             </div>
 
-            {/* Bottom Bar */}
             <div className="w-full bg-[#151515] py-6 px-6 md:px-12">
                 <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-xs md:text-sm text-gray-400 font-light text-center md:text-left">

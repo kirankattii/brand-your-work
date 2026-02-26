@@ -10,7 +10,6 @@ const Section5 = () => {
     const [currentFrame, setCurrentFrame] = useState(1);
     const [imagesLoaded, setImagesLoaded] = useState(false);
 
-    // Preload all 169 images for smoother playback
     useEffect(() => {
         let loadedCount = 0;
         const loadImages = async () => {
@@ -26,52 +25,37 @@ const Section5 = () => {
         loadImages();
     }, []);
 
-    // A very long scroll container to allow enough time for 169 frames and 4 features
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"],
     });
 
-    // Map scroll progress (0 to 1) to frame number (1 to 169)
     const frameTransform = useTransform(scrollYProgress, [0, 1], [1, TOTAL_FRAMES]);
 
     useMotionValueEvent(frameTransform, "change", (latest) => {
         setCurrentFrame(Math.round(latest));
     });
 
-    // Initial Title: Fades out quickly at the start
     const initialTextOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
 
-    // Segmenting the scroll progress into 4 roughly equal phases (after the initial title fade out):
-    // Phase 1: 0.1 to 0.3    (Feature 1: Smart Console)
-    // Phase 2: 0.3 to 0.5    (Feature 2: Scene Wizard)
-    // Phase 3: 0.5 to 0.75   (Feature 3: Smart Voice)
-    // Phase 4: 0.75 to 1     (Feature 4: Smart App)
-
-    // Feature 1
     const f1Opacity = useTransform(scrollYProgress, [0.1, 0.15, 0.25, 0.3], [0, 1, 1, 0]);
     const f1Y = useTransform(scrollYProgress, [0.1, 0.15], [50, 0]);
 
-    // Feature 2
     const f2Opacity = useTransform(scrollYProgress, [0.3, 0.35, 0.45, 0.5], [0, 1, 1, 0]);
     const f2Y = useTransform(scrollYProgress, [0.3, 0.35], [50, 0]);
 
-    // Feature 3
     const f3Opacity = useTransform(scrollYProgress, [0.5, 0.55, 0.7, 0.75], [0, 1, 1, 0]);
     const f3Y = useTransform(scrollYProgress, [0.5, 0.55], [50, 0]);
 
-    // Feature 4: Does not close/fade out at the end
     const f4Opacity = useTransform(scrollYProgress, [0.75, 0.8], [0, 1]);
     const f4Y = useTransform(scrollYProgress, [0.75, 0.8], [50, 0]);
 
 
     return (
-        // 1200vh ensures a very long scroll so the 169 frames aren't rushed
         <div ref={containerRef} className="relative h-[1200vh] w-full bg-black">
 
             <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
 
-                {/* --- Background Image Sequence from /section4 --- */}
                 <div className="absolute inset-0 z-0">
                     <img
                         src={`/section4/ezgif-frame-${currentFrame.toString().padStart(3, "0")}.jpg`}
@@ -81,7 +65,6 @@ const Section5 = () => {
 
                 </div>
 
-                {/* --- Initial Center Title --- */}
                 <motion.div
                     style={{ opacity: initialTextOpacity }}
                     className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none"
@@ -95,10 +78,8 @@ const Section5 = () => {
                 </motion.div>
 
 
-                {/* --- Feature Callouts Container --- */}
                 <div className="absolute inset-0 z-20 pointer-events-none px-6 md:px-16 lg:px-24 flex items-center">
 
-                    {/* Feature 1: Smart Console */}
                     <motion.div
                         style={{ opacity: f1Opacity, y: f1Y }}
                         className="absolute flex flex-col pt-10"
@@ -121,7 +102,6 @@ const Section5 = () => {
                         </div>
                     </motion.div>
 
-                    {/* Feature 2: Scene Wizard */}
                     <motion.div
                         style={{ opacity: f2Opacity, y: f2Y }}
                         className="absolute flex flex-col pt-10"
@@ -144,7 +124,6 @@ const Section5 = () => {
                         </div>
                     </motion.div>
 
-                    {/* Feature 3: Smart Voice */}
                     <motion.div
                         style={{ opacity: f3Opacity, y: f3Y }}
                         className="absolute flex flex-col pt-10"
@@ -167,7 +146,6 @@ const Section5 = () => {
                         </div>
                     </motion.div>
 
-                    {/* Feature 4: Smart App */}
                     <motion.div
                         style={{ opacity: f4Opacity, y: f4Y }}
                         className="absolute flex flex-col pt-10"

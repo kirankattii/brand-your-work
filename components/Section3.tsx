@@ -11,18 +11,14 @@ const Section3 = () => {
         offset: ["start start", "end end"],
     });
 
-    // Background transition: light-off to light-on (extended scroll)
     const bgOpacityOff = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
     const bgOpacityOn = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
 
-    // First Text Block: "A HOME THAT SENSES / Intelligent spaces"
     const text1Opacity = useTransform(scrollYProgress, [0, 0.25, 0.4], [1, 1, 0]);
     const text1Y = useTransform(scrollYProgress, [0, 0.4], [0, -50]);
 
-    // Second Content Block (Text + Mobile Image): "Proactive response"
     const content2Opacity = useTransform(scrollYProgress, [0.5, 0.6], [0, 1]);
 
-    // Clock Image
     const clockOpacity = useTransform(scrollYProgress, [0.7, 0.8, 0.9, 1], [0, 1, 1, 0]);
     const clockScale = useTransform(scrollYProgress, [0.7, 0.8], [0.8, 1]);
 
@@ -31,7 +27,6 @@ const Section3 = () => {
         <div ref={containerRef} className="relative h-[400vh] w-full bg-black">
             <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
 
-                {/* --- Background Images --- */}
                 <motion.div style={{ opacity: bgOpacityOff }} className="absolute inset-0 z-0">
                     <Image
                         src="/light-off.jpg"
@@ -52,10 +47,6 @@ const Section3 = () => {
                     />
                 </motion.div>
 
-                {/* Overlay to ensure text readability */}
-                {/* <div className="absolute inset-0 bg-black/40 z-1 pointer-events-none" /> */}
-
-                {/* --- First Text Block --- */}
                 <motion.div
                     style={{ opacity: text1Opacity, y: text1Y }}
                     className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none"
@@ -71,14 +62,11 @@ const Section3 = () => {
                     </p>
                 </motion.div>
 
-                {/* --- Second Content Block (Grouped Text & Mobile Image) --- */}
                 <motion.div
                     style={{ opacity: content2Opacity }}
                     className="absolute inset-0 z-20 pointer-events-none flex"
                 >
-                    {/* Left Side: Fixed text and mobile image */}
                     <div className="absolute left-1/2 -translate-x-1/2 md:left-16 lg:left-24 top-1/2 -translate-y-1/2 md:translate-x-0 w-[90%] md:w-auto flex flex-col items-center md:items-start pt-[15vh]">
-                        {/* Text */}
                         <div className="max-w-xs md:max-w-md mb-4 md:mb-6 text-center md:text-left">
                             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-2 md:mb-4 drop-shadow-lg leading-tight">
                                 Proactive<br />response
@@ -88,7 +76,6 @@ const Section3 = () => {
                             </p>
                         </div>
 
-                        {/* Mobile Image positioned directly under the text */}
                         <div className="relative w-64 sm:w-72 md:w-48 lg:w-[220px] aspect-[1/2]">
                             <Image
                                 src="/mobile-app1.png"
@@ -99,7 +86,6 @@ const Section3 = () => {
                         </div>
                     </div>
 
-                    {/* Right/Center Side: Clock */}
                     <motion.div
                         style={{ opacity: clockOpacity, scale: clockScale }}
                         className="absolute left-1/2 bottom-8 md:bottom-24 -translate-x-1/2 flex flex-col items-center"
